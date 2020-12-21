@@ -168,6 +168,9 @@ class AxClient(WithDBSettingsBase):
         status_quo: Optional[TParameterization] = None,
         overwrite_existing_experiment: bool = False,
         experiment_type: Optional[str] = None,
+        # Multi-objective optimization arguments:
+        objectives: Optional[Dict[str, str]] = None,
+        objective_thresholds: Optional[List[str]] = None,
         choose_generation_strategy_kwargs: Optional[Dict[str, Any]] = None,
     ) -> None:
         """Create a new experiment and save it if DBSettings available.
@@ -248,6 +251,7 @@ class AxClient(WithDBSettingsBase):
                     "with new experiment."
                 )
 
+
         self._experiment = make_experiment(
             name=name,
             parameters=parameters,
@@ -257,6 +261,8 @@ class AxClient(WithDBSettingsBase):
             outcome_constraints=outcome_constraints,
             status_quo=status_quo,
             experiment_type=experiment_type,
+            objectives=objectives,
+            objective_thresholds=objective_thresholds
         )
 
         try:
