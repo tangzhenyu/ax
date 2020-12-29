@@ -22,7 +22,7 @@ logger = get_logger(__name__)
 
 TRefPoint = List[ObjectiveThreshold]
 
-MAX_OBJECTIVES: int = 4
+MAX_OBJECTIVES: int = 20
 OC_TEMPLATE: str = (
     "OptimizationConfig(objective={objective}, outcome_constraints=[{constraints}])"
 )

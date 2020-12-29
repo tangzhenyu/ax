@@ -503,7 +503,8 @@ class GenerationStrategy(Base):
         if self._curr.num_trials == -1:  # Unlimited trials, just use curr. model.
             self._set_or_update_current_model(data=data)
             return
-
+        print(self.num_can_complete_this_step, self._curr.num_trials)
+        print(self.num_completed_this_step, self._curr.min_trials_observed)
         # Not unlimited trials => determine whether to transition to next model.
         enough_generated = self.num_can_complete_this_step >= self._curr.num_trials
         enough_observed = self.num_completed_this_step >= self._curr.min_trials_observed

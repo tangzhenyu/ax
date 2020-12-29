@@ -974,6 +974,7 @@ class AxClient(WithDBSettingsBase):
         else:  # pragma: no cover
             raise ValueError(f"Unexpected trial type: {type(trial)}.")
         assert isinstance(raw_data, dict)
+        print("raw_data...", raw_data)
         not_trial_arm_names = set(raw_data.keys()) - set(trial.arms_by_name.keys())
         if not_trial_arm_names:
             raise ValueError(
@@ -981,10 +982,11 @@ class AxClient(WithDBSettingsBase):
             )
         evaluations = {
             arm_name: raw_data_to_evaluation(
-                raw_data=raw_data[arm_name], objective_name=self.objective_name
+                raw_data=raw_data[arm_name] #, objective_name=self.objective_name
             )
             for arm_name in raw_data
         }
+        print("evaluations...", evaluations)
         data = data_from_evaluations(
             evaluations=evaluations,
             trial_index=trial.index,

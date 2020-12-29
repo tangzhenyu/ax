@@ -568,7 +568,7 @@ def make_experiment(
 
 def raw_data_to_evaluation(
     raw_data: TEvaluationOutcome,
-    objective_name: str,
+    objective_name: str = "default",
     start_time: Optional[int] = None,
     end_time: Optional[int] = None,
 ) -> TEvaluationOutcome:
